@@ -1,0 +1,48 @@
+svp_version: "0.1.0"
+level: 5
+
+project:
+  name: "My SVP Project"
+  description: "A sample project using SVP layered compilation"
+  version: "0.1.0"
+
+intent:
+  problem: "Demonstrate SVP workflow with a simple user management system"
+  solution: "Build a type-safe user service with proper validation and error handling"
+  success_criteria:
+    - "User can be created with validation"
+    - "Users can be retrieved by ID"
+    - "All errors are properly handled"
+
+constraints:
+  functional:
+    - "Email must be valid format"
+    - "Password must be at least 8 characters"
+    - "User ID must be UUID v4"
+  non_functional:
+    - "Response time < 100ms"
+    - "100% type safety (no any)"
+
+domains:
+  - name: "User"
+    responsibility: "User management and validation"
+    boundaries:
+      in_scope:
+        - "User CRUD operations"
+        - "Input validation"
+      out_of_scope:
+        - "Authentication"
+        - "Authorization"
+    dependencies: []
+
+integrations:
+  - name: "PostgreSQL"
+    type: database
+    description: "User data persistence"
+
+context:
+  designDocs: []
+  environment:
+    - name: "DATABASE_URL"
+      description: "PostgreSQL connection string"
+      required: true
